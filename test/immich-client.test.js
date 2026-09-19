@@ -16,6 +16,15 @@ test('maps wrapped people and sorts by name', async () => {
   ]);
 });
 
+test('uses the Immich asset count when faceCount is not returned', async () => {
+  const client = new ImmichClient('https://photos.example', 'secret', {
+    fetchImpl: async () => new Response(JSON.stringify([
+      { id: '1', name: 'Alice', assetCount: 12 }
+    ]), { status: 200 })
+  });
+  assert.equal((await client.listPeople())[0].faceCount, 12);
+});
+
 test('falls back to legacy endpoint on 404', async () => {
   const paths = [];
   const client = new ImmichClient('https://photos.example', 'secret', {

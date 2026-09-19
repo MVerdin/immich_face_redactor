@@ -40,7 +40,12 @@ class ImmichClient {
     if (!items) throw new ImmichError('Immich returned an unexpected people response.');
     return items.map((p) => ({
       id: String(p.id), name: String(p.name || 'Unnamed person'),
-      faceCount: Number(p.faceCount ?? p.face_count ?? 0) || 0,
+      // Current Immich person responses omit a faceCount field. Their asset
+      // count is the useful library count to show for a selected person.
+      faceCount: Number(
+        p.faceCount ?? p.face_count ?? p.facesCount ?? p.faces_count ??
+        p.assetCount ?? p.asset_count ?? p.assets?.length ?? 0
+      ) || 0,
       thumbnailPath: p.thumbnailPath || p.thumbnail_path || null
     })).sort((a, b) => a.name.localeCompare(b.name));
   }
