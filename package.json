@@ -1,0 +1,21 @@
+{
+  "name": "immich-face-redactor",
+  "version": "1.0.0",
+  "description": "Select people in an Immich library for later face redaction.",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.immichfaceredactor.app",
+    "productName": "Immich Face Redactor",
+    "files": ["electron/**/*", "renderer/**/*", "package.json"]
+  },
+  "engines": { "node": ">=18" }
+}

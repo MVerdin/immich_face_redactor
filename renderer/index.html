@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Immich Face Redactor</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<main>
+  <h1>Immich Face Redactor</h1>
+  <section class="panel connection"><h2>Immich connection</h2><div class="fields">
+    <label>Server URL<input id="server" type="url" placeholder="https://photos.example.com"></label>
+    <label>API token<input id="token" type="password" autocomplete="off"></label>
+    <button id="load">Load people</button>
+  </div></section>
+  <section class="toolbar"><label>Redaction style <select id="style"><option>Blur</option><option>Black square</option><option>Pixelate</option><option>Solid color</option></select></label><button id="review">Review selection</button></section>
+  <section class="panel"><h2>People in library</h2><div id="people" class="people"><p class="empty">Enter your connection details and load people.</p></div></section>
+  <output id="status" role="status">Ready.</output>
+</main>
+<script src="renderer.js"></script>
+</body></html>
